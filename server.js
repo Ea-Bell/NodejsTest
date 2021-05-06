@@ -16,7 +16,7 @@ var dbconut;
 var dbPost;
 
 MongoClient.connect(uri, function (err, client) {
-    db = client.db('todoapp'); ``
+    db = client.db('todoapp');
     dbconut = db.collection('counter');
     dbPost = db.collection('post');
 
