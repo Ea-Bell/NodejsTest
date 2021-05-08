@@ -11,6 +11,7 @@ var bodyParser = require('body-parser')
 //익스프레스 객체 생성
 var app = express();
 
+//테스트 수정중
 //기본 속성 설정
 app.set('port', process.env.PORT || 8080);
 //body-parser를 이용해 application/x-www-form-urlencoded 파싱
