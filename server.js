@@ -11,7 +11,7 @@ app.use(methodOverride('_method'))
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:ggKy7EjgOjrGaN5S@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
-//깃 테스트
+//깃 테스트ddddddd
 var db;
 var dbconut;
 var dbPost;
