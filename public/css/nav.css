@@ -1,3 +1,6 @@
-.navbar{
+#navbar-default{
     background-color: #1F89C6;
+}
+#col-md-1{
+	background-color: red;
 }
