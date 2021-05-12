@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const methodOverride = require('method-override')
 const MongoClient = require('mongodb').MongoClient
-
+const router = require('express').Router();
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'))
@@ -35,6 +35,9 @@ app.get('/list', function (req, res) {
         res.render('list.ejs', { posts: result })
     });
 });
+app.get('/test', function(req, res){
+    res.render('test.ejs');
+})
 
 app.get('/detail/:id', function (req, res) {
     dbPost.findOne({ _id: parseInt(req.params.id) }, function (err, result) {
@@ -48,6 +51,10 @@ app.get('/edit/:id', function (req, res) {
     dbPost.findOne({ _id: parseInt(req.params.id) }, function (err, result) {
         res.render('edit.ejs', { post: result })
     });
+});
+
+app.get('/write', function (req, res) {
+    res.render('write.ejs')
 });
 
 app.post('/add', function (req, res) {

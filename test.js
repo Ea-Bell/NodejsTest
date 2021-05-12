@@ -3,14 +3,12 @@ var express = require('express')
     , http = require('http')
     , path = require('path');
 var router = express.Router();
-
 //Express의 미들웨어 불러오기
 var bodyParser = require('body-parser')
     , static = require('serve-static');
 
 //익스프레스 객체 생성
 var app = express();
-
 //테스트
 //기본 속성 설정
 app.set('port', process.env.PORT || 8080);
