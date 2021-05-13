@@ -69,7 +69,7 @@ app.post('/add', function (req, res) {
 
 	
 	console.log(req.query.title +","+req.query.date);
-
+	console.log(req.body.title +","+req.body.date);
     //디비 insert 함수
     dbPost.insertOne({ _id: noticeBoard + 1, 할일: req.body.title||req.query.title, 날짜: req.body.date||req.query.date }, function (err, result) {
         dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalpost: 1 } }, function (err, result) {
