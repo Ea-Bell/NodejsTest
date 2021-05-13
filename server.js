@@ -60,7 +60,6 @@ app.get('/write', function (req, res) {
 
 app.post('/add', function (req, res) {
     let noticeBoard;  //글번호 npm
-
     //디비에 게시물 갯수 insert함수
     dbconut.findOne({ name: '게시물갯수' }, function (err, result) {
         noticeBoard = result.totalpost;
@@ -70,7 +69,7 @@ app.post('/add', function (req, res) {
 
 
     //디비 insert 함수
-    dbPost.insertOne({ _id: noticeBoard + 1, 할일: req.body.title, 날짜: req.body.date }, function (err, result) {
+    dbPost.insertOne({ _id: noticeBoard + 1, 할일: req.body.title||req.query.title, 날짜: req.body.date||req.query.date }, function (err, result) {
         dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalpost: 1 } }, function (err, result) {
             if (err) {
                 return console.log(err);
@@ -80,6 +79,7 @@ app.post('/add', function (req, res) {
         dbconut.updateOne
     });
 });
+
 
 //삭제요청
 app.delete('/delete', function (req, res) {
