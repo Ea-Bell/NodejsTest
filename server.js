@@ -36,7 +36,7 @@ app.get('/list', function (req, res) {
         res.render('list.ejs', { posts: result })
     });
 });
-app.get('/test', function(req, res){
+app.get('/test', function (req, res) {
     res.render('test.ejs');
 })
 
@@ -67,17 +67,29 @@ app.post('/add', function (req, res) {
         res.send("전송완료");
     });
 
-	
-	console.log("query: "+req.query.title +","+req.query.date);
-	console.log("body: "+req.body.title +","+req.body.date);
+
+    console.log("query: " + req.query.title + "," + req.query.date);
+    console.log("body: " + req.body.title + "," + req.body.date);
+
+    // var title = req.body.title;
+    // var date = req.body.date;
+
     //디비 insert 함수
-    dbPost.insertOne({ _id: noticeBoard + 1, 할일: req.body.title||req.query.title, 날짜: req.body.date||req.query.date }, function (err, result) {
+    dbPost.insertOne({ _id: noticeBoard + 1, title: req.body.title, date: req.body.date }, function (err, result) {
+        console.log(result.title)
+        if (err) {
+            return console.log(err)
+        }
+
+
         dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalpost: 1 } }, function (err, result) {
-            if (err) {
-                return console.log(err);
-            }
+            // if (err) {
+            //     return console.log(err);
+            // }
+            console.log("개시물갯수:" + result.totalpost)
         });
-        console.log('저장완료!');
+
+        console.log('insert 완료!');
         dbconut.updateOne
     });
 });
