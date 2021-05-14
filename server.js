@@ -9,7 +9,7 @@ app.use('/public', express.static('public'))
 app.use(methodOverride('_method'))
 
 const port = 8080;
-const uri = 'mongodb+srv://EaBell:ggKy7EjgOjrGaN5S@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 //깃 테스트ddddddd
 var db;
@@ -75,12 +75,7 @@ app.post('/add', function (req, res) {
     // var date = req.body.date;
 
     //디비 insert 함수
-    dbPost.insertOne({ _id: noticeBoard + 1, title: req.body.title, date: req.body.date }, function (err, result) {
-        console.log(result.title)
-        if (err) {
-            return console.log(err)
-        }
-
+    dbPost.insertOne({ _id: 총게시물갯수 + 1, 제목: req.body.title, 날짜: req.body.date }, function (err, result) {
 
         dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalpost: 1 } }, function (err, result) {
             // if (err) {
@@ -94,6 +89,22 @@ app.post('/add', function (req, res) {
     });
 });
 
+app.post('/add2', function (요청, 응답) {
+
+
+    db.collection('counter').findOne({ name: '게시물갯수' }, function (에러, 결과) {
+        var 총게시물갯수 = 결과.totalPost
+
+        db.collection('post').insertOne({ _id: 총게시물갯수 + 1, 제목: 요청.body.title, 날짜: 요청.body.date }, function (에러, 결과) {
+            console.log(결과.날짜);
+            db.collection('counter').updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (에러, 결과) {
+                if (에러) { return console.log(에러) }
+                응답.send('전송완료');
+            })
+        })
+
+    })
+})
 
 //삭제요청
 app.delete('/delete', function (req, res) {
