@@ -59,44 +59,52 @@ app.get('/write', function (req, res) {
 });
 
 app.post('/add', function (req, res) {
+    console.dir(req);
     let noticeBoard;  //글번호 npm
     //디비에 게시물 갯수 insert함수
+
+
     dbconut.findOne({ name: '게시물갯수' }, function (err, result) {
-        noticeBoard = result.totalpost;
-        console.log(result.totalpost);
+        if (err) return console.log(err);
+
+        console.dir("게시물 갯수 result:" + result);
+        noticeBoard = result.totalPost;
         res.send("전송완료");
-    });
 
 
-    console.log("query: " + req.query.title + "," + req.query.date);
-    console.log("body: " + req.body.title + "," + req.body.date);
+        //익스프레스 객체 생성
 
-    // var title = req.body.title;
-    // var date = req.body.date;
+        console.log("query: " + req.query.title + "," + req.query.date);
+        console.log("body: " + req.body.title + "," + req.body.date);
 
-    //디비 insert 함수
-    dbPost.insertOne({ _id: 총게시물갯수 + 1, 제목: req.body.title, 날짜: req.body.date }, function (err, result) {
+        var title = req.body.title || req.query.title;
+        var date = req.body.date || req.query.date;
 
-        dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalpost: 1 } }, function (err, result) {
-            // if (err) {
-            //     return console.log(err);
-            // }
-            console.log("개시물갯수:" + result.totalpost)
+        //디비 insert 함수
+        dbPost.insertOne({ _id: noticeBoard + 1, 제목: title, 날짜: date }, function (err, result) {
+            //console.dir("result:" + result);
+
+            dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (err, result) {
+                if (err) {
+                    return console.log(err);
+                }
+
+            });
+
+            console.log('insert 완료!');
+            dbconut.updateOne
         });
-
-        console.log('insert 완료!');
-        dbconut.updateOne
     });
 });
 
-app.post('/add2', function (요청, 응답) {
+app.get('/add2', function (요청, 응답) {
 
 
     db.collection('counter').findOne({ name: '게시물갯수' }, function (에러, 결과) {
         var 총게시물갯수 = 결과.totalPost
 
-        db.collection('post').insertOne({ _id: 총게시물갯수 + 1, 제목: 요청.body.title, 날짜: 요청.body.date }, function (에러, 결과) {
-            console.log(결과.날짜);
+        db.collection('post').insertOne({ _id: 총게시물갯수 + 1, 제목: 요청.query.title, 날짜: 요청.query.date }, function (에러, 결과) {
+
             db.collection('counter').updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (에러, 결과) {
                 if (에러) { return console.log(에러) }
                 응답.send('전송완료');
