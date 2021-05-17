@@ -35,15 +35,7 @@ app.get('/', function (req, res) {
 app.get('/list', function (req, res) {
     dbPost.find().toArray(function (err, result) {
         // console.log(listPage 요청);
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
         res.render('list.ejs', { posts: result })
     });
 });
@@ -109,19 +101,6 @@ app.post('/add', function (req, res) {
 });
 
 
-//변수 total=전체 페이지 개수, currentPage= 사용자 요청한 페이지 번호, content= 화면에 출려할 게시글 목록, size=한페이지에 보여줄 게시글 갯수
-ArticlePage = function(totoal, currentPage, size, content){
-if(total ==0){
-	totalPage = 0;
-	startPage= 0;
-	endPage= 0;
-}	else{
-	totalPage= total/size;
-	if(totla %size > 0){
-		totalPage++;
-	}
-}
-}
 
 //삭제요청
 app.delete('/delete', function (req, res) {
