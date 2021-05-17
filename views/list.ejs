@@ -25,10 +25,10 @@
         <ul class="list-group">
             <% for (var i=0; i < posts.length; i++){ %>
                 <li class="list-group-item">
-                    <h4> 할일 제목 : <%= posts[i].제목 %>
+                    <h4> 할일 제목 : <%= posts[i].name %>
                     </h4>
                     <a href="/detail/<%= posts[i]._id %> ">
-                        <p> 날짜 : <%= posts[i].날짜 %>
+                        <p> 날짜 : <%= posts[i].score %>
                         </p>
                     </a>
                     <button class="delete" data-id="<%=posts[i]._id %> ">삭제</button>
