@@ -7,6 +7,8 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'))
 app.use(methodOverride('_method'))
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
