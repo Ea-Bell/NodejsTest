@@ -12,6 +12,7 @@ app.use(express.json());
 
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+            'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 //깃 테스트
 var db;
@@ -35,6 +36,15 @@ app.get('/', function (req, res) {
 app.get('/list', function (req, res) {
     dbPost.find().toArray(function (err, result) {
         // console.log(listPage 요청);
+		
+		
+		
+		
+		
+		
+		
+		
+		
         res.render('list.ejs', { posts: result })
     });
 });
@@ -76,14 +86,14 @@ app.post('/add', function (req, res) {
 
         //익스프레스 객체 생성
 
-        console.log("query: " + req.query.title + "," + req.query.date);
-        console.log("body: " + req.body.title + "," + req.body.date);
+        console.log("query: " + req.query.name + "," + req.query.name);
+        console.log("body: " + req.body.score + "," + req.body.score);
 
-        var title = req.body.title || req.query.title;
-        var date = req.body.date || req.query.date;
+        var name = req.body.name || req.query.name;
+        var score = req.body.score || req.query.score;
 
         //디비 insert 함수
-        dbPost.insertOne({ _id: noticeBoard + 1, 제목: title, 날짜: date }, function (err, result) {
+        dbPost.insertOne({ _id: noticeBoard + 1, name: name, score: parseInt(score) }, function (err, result) {
             //console.dir("result:" + result);
 
             dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (err, result) {
@@ -99,22 +109,20 @@ app.post('/add', function (req, res) {
     });
 });
 
-app.get('/add2', function (요청, 응답) {
 
-
-    db.collection('counter').findOne({ name: '게시물갯수' }, function (에러, 결과) {
-        var 총게시물갯수 = 결과.totalPost
-
-        db.collection('post').insertOne({ _id: 총게시물갯수 + 1, 제목: 요청.query.title, 날짜: 요청.query.date }, function (에러, 결과) {
-
-            db.collection('counter').updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (에러, 결과) {
-                if (에러) { return console.log(에러) }
-                응답.send('전송완료');
-            })
-        })
-
-    })
-})
+//변수 total=전체 페이지 개수, currentPage= 사용자 요청한 페이지 번호, content= 화면에 출려할 게시글 목록, size=한페이지에 보여줄 게시글 갯수
+ArticlePage = function(totoal, currentPage, size, content){
+if(total ==0){
+	totalPage = 0;
+	startPage= 0;
+	endPage= 0;
+}	else{
+	totalPage= total/size;
+	if(totla %size > 0){
+		totalPage++;
+	}
+}
+}
 
 //삭제요청
 app.delete('/delete', function (req, res) {
