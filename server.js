@@ -12,6 +12,10 @@ app.use(express.json());
 
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+<<<<<<< HEAD
+=======
+           
+>>>>>>> d713190bf013620ec18c4c34b380cc9e786ffd10
 
 //깃 테스트
 var db;
