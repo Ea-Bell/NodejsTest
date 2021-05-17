@@ -12,9 +12,8 @@ app.use(express.json());
 
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-           
 
-//깃 테스트
+
 var db;
 var dbconut;
 var dbPost;
@@ -89,11 +88,11 @@ app.post('/add', function (req, res) {
         console.log("query: " + req.query.name + "," + req.query.name);
         console.log("body: " + req.body.score + "," + req.body.score);
 
-        var name = req.body.name || req.query.name;
-        var score = req.body.score || req.query.score;
+        let name = req.body.name || req.query.name;
+        let score = parseInt(req.body.score) || parseInt(req.query.score);
 
         //디비 insert 함수
-        dbPost.insertOne({ _id: noticeBoard + 1, name: name, score: parseInt(score) }, function (err, result) {
+        dbPost.insertOne({ _id: noticeBoard + 1, name: name, score: score }, function (err, result) {
             //console.dir("result:" + result);
 
             dbconut.updateOne({ name: '게시물갯수' }, { $inc: { totalPost: 1 } }, function (err, result) {
