@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'))
 app.use(methodOverride('_method'))
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const port = 8080;
@@ -32,7 +32,7 @@ app.get('/', function (req, res) {
 });
 
 //페이지 보여줌
-app.get('/list', function (req, res) {
+app.get('/list/:id', function (req, res) {
     dbPost.find().toArray(function (err, result) {
         // console.log(listPage 요청);
 
