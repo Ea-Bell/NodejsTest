@@ -3,7 +3,7 @@ const app = express()
 const methodOverride = require('method-override')
 const MongoClient = require('mongodb').MongoClient
 const router = require('express').Router();
-const mongoose = require('mongoose');
+
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'))
@@ -50,10 +50,13 @@ app.get('/list2/:id', function (req, res) {
 	//2번째 사잇값  1<d<max
 	//3번째 max값 
     dbPost.find().toArray(function (err, result) {
-        // console.log(listPage 요청);
-	let currentPage =req.params.id; //현재 위치	
+        // console.log(listPage 요청);
+	//페이지 컨텐츠 
+	let currentPage =parseInt(req.params.id); //현재 위치	
 	let contentSize= result[currentPage];
 	let maxSize= result.length;  // maxSize
+	let	maxContent = currentPage+3; //보여주는 컨텐츠
+	// 페이지 번호 변수할당
 		
 		if(currentPage<1){		
 						res.redirect('/list2/1');
@@ -64,9 +67,10 @@ app.get('/list2/:id', function (req, res) {
 			// for(i=contentSize;i<contentSize*5;i++){
 			// 	console.dir("i", contentSize);
 			// }
-			console.log("asdfeeee:"+currentPage);
+			console.log("asdfeeee:"+typeof currentPage);
 			console.log("maxSize:"+typeof maxSize.toString());
-			res.render('list2.ejs',{posts:result,test:a, contentSize=contentSize})
+			console.log("maxContent:" +maxContent)
+			res.render('list2.ejs',{posts:result,test:a, contentSize:contentSize, currentPage:currentPage,maxContent:maxContent})
 		}else if(currentPage > maxSize){
 			console.log("maxSize찍음")
 			res.redirect('/list2/'+maxSize);
