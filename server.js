@@ -14,6 +14,23 @@ app.use(express.json());
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
+
+// var BlockNum = {
+// 	 pageBlock =5; // 한블록당 몇 개 페이지를 보여주는지에 대한 변수
+// 	 currentBlock = currentPage/pageBlock;  // 현재페이지 블록
+// 	 lastBlock =  maxSize/pageBlock;        //마지막 블록 번호
+// 	 startNum  = currentBlock*pageBlock+1;// 시작 페이지
+// 	 endNum = currentBlock*pageBlock+pageBlock+1 // 마지막 페이지
+// }
+
+var BlockNum = {
+	 pageBlock :5, // 한블록당 몇 개 페이지를 보여주는지에 대한 변수
+	 currentBlock,
+	 lastBlock,
+	 startNum,
+	 endNum 
+}
+
 var db;
 var dbconut;
 var dbPost;
@@ -51,16 +68,20 @@ app.get('/list2/:id', function (req, res) {
 	//3번째 max값 
     dbPost.find().toArray(function (err, result) {
         // console.log(listPage 요청);
-	//페이지 컨텐츠 
+	//페이지 컨텐츠 변수들
 	let currentPage =parseInt(req.params.id); //현재 위치	
 	let contentSize= result[currentPage];
 	let maxSize= result.length;  // maxSize
 	let	maxContent = currentPage+3; //보여주는 컨텐츠
-	// 페이지 번호 변수할당
+	// 페이지 블록 할당
+
+
+		
+		
+		
 		
 		if(currentPage<1){		
-						res.redirect('/list2/1');
-						
+						res.redirect('/list2/1');						
 			}
 		else if(1<=currentPage&&currentPage<=maxSize){
 			// //변수 2개? 
@@ -70,6 +91,14 @@ app.get('/list2/:id', function (req, res) {
 			console.log("asdfeeee:"+typeof currentPage);
 			console.log("maxSize:"+typeof maxSize.toString());
 			console.log("maxContent:" +maxContent)
+			
+			
+			//페이지 번호 할당 알고리즘
+			
+			
+			
+			
+			
 			res.render('list2.ejs',{posts:result,test:a, contentSize:contentSize, currentPage:currentPage,maxContent:maxContent})
 		}else if(currentPage > maxSize){
 			console.log("maxSize찍음")
