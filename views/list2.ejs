@@ -21,33 +21,37 @@
 <%- include("./common/nav")%>
 
     <body>
-        서버에서 가져온 할일 리스트
-		<!-- 요기가 보여주는 부분이라서 몇개까지 보여줄건가요? -->
+        서버2에서 가져온 할일 리스트
+        <!-- 요기가 보여주는 부분이라서 몇개까지 보여줄건가요? -->
         <ul class="list-group">
-            <% for (var i= currentPage-1; i < maxContent; i++){ %>
+                      <% for (var i=startPage; i < maxContent; i++){ %>
                 <li class="list-group-item">
-                    <h4> 할일 제목 : <%= posts[i].name %>
+                    <h4> Id : <%= posts[i].name %>
                     </h4>
                     <a href="/detail/<%= posts[i]._id %> ">
-                        <p> 날짜 : <%= posts[i].score %>
+                        <p> score : <%= posts[i].score %>
                         </p>
                     </a>
                     <button class="delete" data-id="<%=posts[i]._id %> ">삭제</button>
                 </li>
                 <% } %>
+                    <%= console.log(maxContent) %>
         </ul>
-		
-		<!-- 페이지 네이션에서 보여줘야하는부분  밑에 버튼을 몇개까지 보여줄건지. -->
-	<nav aria-label="Page navigation example">
-		<ul class="pagination"> 
-     		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		<% for (var d=0; d<posts.length; d++) {%>
-    		<li class="page-item"><a class="page-link" href="#"><%=d+1%><%=test%></a></li>
-		<%}%>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-  		</ul>
-	</nav>
-		
+
+        <!-- 페이지 네이션에서 보여줘야하는부분  밑에 버튼을 몇개까지 보여줄건지. -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <% for (var d=0; d<totlaPage; d++) {%>
+                    <li class="page-item"><a class="page-link" href="#">
+                            <%=d+1%>
+                                <%=test%>
+                        </a></li>
+                    <%}%>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+
         <script>
             $('.delete').click(function (e) {
                 var 글목록 = e.target.dataset.id;
