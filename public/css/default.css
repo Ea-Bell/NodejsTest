@@ -1,0 +1,39 @@
+
+body{
+    background: white;
+    font-family: 'Squada One', cursive;
+    font-size: 30px;
+}
+.container{
+    background-color: white ;
+    height: 100vh;
+    
+}
+li.list-group-item{
+    border-style: none;
+    background-color: white;
+    border-radius: 25px;
+
+    width: 100%;
+}
+
+div.blank{
+    background-color: white;
+     float: left; 
+     padding-right: 1.8em;
+     color: black;
+}
+div.blank-list{
+    height: 5px; 
+    width: 100%;
+ 
+}
+
+.rank-textId{
+    font-size: 50px;
+}
+.rank-textScroe{
+    font-size: 50px;
+    color: #91C499;
+}
+

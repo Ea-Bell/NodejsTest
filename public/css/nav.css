@@ -1,6 +1,11 @@
-#navbar-default{
-    background-color: #1F89C6;
+.navbar-custom{
+    background-color:#91C499;
+    width: 100%;
 }
-#col-md-1{
-	background-color: red;
+
+/* nav 텍스트 관련 css임*/
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {  
+    color:white;
+    font-size: 120px;
 }
