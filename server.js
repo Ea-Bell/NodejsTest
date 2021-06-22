@@ -33,7 +33,7 @@ MongoClient.connect(uri, function (err, client) {
 });
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.render('write.ejs');
 });
 
 //페이지 보여줌
