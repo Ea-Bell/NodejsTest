@@ -3,8 +3,9 @@ const app = express()
 const methodOverride = require('method-override')
 const MongoClient = require('mongodb').MongoClient
 const router = require('express').Router();
-let page= require('./router.js');
 let Mongo = require('./Mongodb.js');
+let page= require('./router.js');
+
 
 app.use(page);
 

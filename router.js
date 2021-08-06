@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var mongoDB= require('./mongodb.js');
 var bodyParser = require('body-parser');
+
+
 
 
 router.get('/', function (req, res) {

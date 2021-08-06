@@ -1,3 +1,5 @@
+var Mongo={}
+
 
 const port = 8080;
 const uri = 'mongodb+srv://EaBell:7hSV2A1o9LI1YizP@cluster0.plbij.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -17,4 +19,4 @@ MongoClient.connect(uri, function (err, client) {
     if (err) return console.log(err);
 });
 
-module.exports.mogoDb
+module.exports=Mongo
