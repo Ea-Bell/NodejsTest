@@ -19,4 +19,4 @@ MongoClient.connect(uri, function (err, client) {
     if (err) return console.log(err);
 });
 
-module.exports=Mongo
+module.exports=mogoDb

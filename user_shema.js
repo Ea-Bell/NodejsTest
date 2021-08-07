@@ -21,4 +21,4 @@ Schema.createSchema= function(mongoose){//mongoose 객체를 파라미터로 전
 };
 
 //module.exports에 UserSchema객체 직접 할당
-module.exports=Schema;
+module.exports=Schema

@@ -15,7 +15,7 @@ app.set('port', process.env.PORT || 8080);
 //body-parser를 이용해 application/x-www-form-urlencoded 파싱
 app.use(express.urlencoded({ extended: false }));
 // body-parser를 이용해 application/json 파싱
-app.use(express.josn())
+app.use(express.json());
 app.use(static(path.join(__dirname, 'public')));
 
 //Express 서버 시작
@@ -47,7 +47,7 @@ router.route('/process/users/:id').get(function (req, res) {
     res.end();
 });
 
-varcookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 //cookie-parser설정
 app.use(cookieParser());
 router.route('/process/showCookie').get(function (req, res) {
@@ -69,7 +69,7 @@ router.route('/process/setUserCookie').get(function (req, res) {
 
 //라우터객체를app객체에등록
 app.use('/', router);
-var expressErrorHandler = require('express-error-handler');
+var expressErrorHandler = require('node-error-handler');
 var errorHandler = expressErrorHandler({
     static: {
         '404': './public/404.html'
