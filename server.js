@@ -8,7 +8,6 @@ let page= require('./router.js');
 
 
 app.use(page);
-
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 // app.use('/public', express.static('public'))
@@ -17,8 +16,13 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-
+function creatUserSchema(){
+    UserSchema = require('./user_schema').createSchema(Mongoose);
+    
+    //UserModel 모델 정의
+    UserModel - Mongoose.model("user3", UserSchema);
+    console.log('UserModel 정의함.');
+}
 // var db;
 // var dbconut;
 // var dbPost;

@@ -3,9 +3,6 @@ var router = express.Router();
 var mongoDB= require('./mongodb.js');
 var bodyParser = require('body-parser');
 
-
-
-
 router.get('/', function (req, res) {
     res.render('write.ejs');
 });
@@ -23,9 +20,6 @@ router.get('/rank', function (req, res) {
     let Count = 3;
     dbPost.find().sort({ "score": -1 }).limit(10).toArray(function (err, result) {
         // console.log(listPage 요청);
-
-
-
         res.render('list3.ejs', { posts: result, topCount: topCount, Count: Count })
     });
 });
@@ -81,14 +75,10 @@ router.post('/test1', function (req, res) {
     let noticeBoard;  //글번호 npm
     //디비에 게시물 갯수 insert함수
 
-
     function sleep(delay) {
         let start = new Date().getTime();
-
-
         while (new Date().getTime() < start + delay);
     }
-
 
     dbPost.find({}, function (err, result) {
         console.dir("find: ", result)
